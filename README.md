@@ -4,7 +4,7 @@
 
 * Hooks must execute in the same order, e.g. you cannot conditionally use a hook, you either use it all the time or none of the time. (code example below)
 ```javascript react
-// this will fail to compile
+// this will fail to compile.
 if(true) {
     useState(); 
 }
@@ -34,4 +34,51 @@ const [state, setState] = useState();
 ```javascript react
 const [state1, setState1] = useState();
 const [state2, setState2] = useState(); 
+```
+
+* There are two ways to intalize state, the first and most common is to just simply pass in the value you'd like. This can be anything you might need, string, integer, array, object, etc. However this is set everytime the component renders so if you are do something resource or network intense. You can pass in a function as the argument and this will only set the intial state once. 
+```javascript react
+// setting state to intial value, set everytime component renders.
+const [string, setString] = useState('');
+const [int, setInt] = useState(0);
+const [array, setArray] = useState([]);
+const [obj, setObj] = useState({});
+
+// setting state with a function, set only when component first mounts.
+const [count, setCount] = useState(() => {
+    return 0;  
+});
+```
+
+* The setter function can be called in a number of ways you can simply pass in a value to set the state or you can use a callback where the parameter in the callback is the previous state. For most cases it is safest to use the callback method of updating a value. Since state is immutable if you don't use the callback your state won't be updated until re-render. The code below demonstrates this. 
+```javascript react
+const [count, setCount] = useState(0);
+
+// improper way to handle modifying a previous state.
+setState(count + 1); // count which is 0 + 1 returns 1 in this instance. 
+setState(count + 1); // count is imutable meaning it is still 0 in this instance again resulting in 1. 
+console.log(count); // this will return 1, not 2 as expected. 
+
+// proper way to modify previous state.
+setState(prevCount => prevCount + 1); // prevCount is equal to states last value which in this instance is 0. 
+setState(prevCount => prevCount + 1); // prevCount is mutable and it is 1 at this point due to the line above. 
+console.log( ); // here we get the expected result of 2. 
+```
+
+* When updating state that is set to an object or an array you'll want to spread the previous array or object and then perform your mutation. However it can be easiest to sometimes just create several states instead of storing state in an object or an array.
+```javascript react 
+// updating array state.
+const [array, setArray] = useState([]);
+function addNewElement(element) {
+    setArray(prevElements => ([...prevElements, element])); 
+}
+
+// updating object state.
+const [object, setObject] = useState({});
+function addNewProperty(key, value) {
+    setObject(prevObject => ({
+        ...prevObject, 
+        key: value
+    }))
+}
 ```
