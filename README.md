@@ -14,6 +14,8 @@ useState();
 
 * Hooks cannot be nested in conditionals, loops, or functions. They must be at the top level of the component. Best practice is to use all your hooks at the top of the component to avoid issues.
 
+<br>
+
 # Use State
 
 * State is immutable meaning it cannot be modified, though state is expected to change. This is handled by calling a setter function that destroys and recreates state with the modified values every time state needs to be udpated.
@@ -82,6 +84,8 @@ function addNewProperty(key, value) {
     }))
 }
 ```
+
+<br>
 
 # Use Effect
 
