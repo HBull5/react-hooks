@@ -1,4 +1,3 @@
-
 # Hook Basics
 
 * You can only use hooks in function based components and not class based.
@@ -122,4 +121,44 @@ useEffect(() => {
 useEffect(() => {
     console.log('only fires on load');
 }, []);
+```
+
+* You can have an `useEffect` callback fire only when some state updates, or if one of of the many states passed into the array udpates. Note that this will also fire once the state is first set as the component mounts.
+```javascript react 
+const [string, setString] = useState('');
+const [count, setCount] = useState(0);
+
+useEffect(() => {
+    console.log('fires only when string is updated');
+}, [string]); 
+
+useEffect(() => {
+    console.log('fires only when count is updated');
+}, [string]); 
+
+useEffect(() => {
+    console.log('fires only when string or count is updated');
+}, [string, count]); 
+```
+
+* For any `useEffect` hook you can run a function on unmount by simply returning a function to be called inside of the `useEffect` callback.
+```javascript react
+useEffect(() => {
+    console.log('component mounted');
+
+    return () => {
+        console.log('component unmounted');
+    }
+}, []);
+```
+
+* If you want to run a clean up function between state changes you will also just simply return that clean up function in your `useEffect` callback. 
+```javascript react 
+useEffect(() => {
+    console.log('state changed');
+
+    return () => {
+        console.log('clean up function');
+    };
+}, [state]);
 ```
