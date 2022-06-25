@@ -1,3 +1,5 @@
+<br>
+
 # Hook Basics
 
 * You can only use hooks in function based components and not class based.
