@@ -78,7 +78,43 @@ const [object, setObject] = useState({});
 function addNewProperty(key, value) {
     setObject(prevObject => ({
         ...prevObject, 
-        key: value
+        [key]: value
     }))
 }
+```
+
+# Use Effect
+
+* The `useEffect` hook is for executing a callback function whenever something happens. This can be onload, every re-render, or when some state updates. 
+
+* To use the `useEffect` hook you'll have to import it to your component as shown below. 
+```javascript react 
+import {useEffect} from 'react';
+```
+
+* The `useEffect` hook takes to paramters, a callback function and an array of dependencies for when to fire the callback. 
+
+* You can have multiple instances of `useEffect` without issue. 
+```javascript react 
+useEffect(() => {
+    console.log('use-effect-1');
+});
+
+useEffect(() => {
+    console.log('use-effect-2');
+});
+```
+
+* You can have an `useEffect` callback fire everytime the a components re-renders simply define the callback without passing in any dependencies. 
+```javascript react 
+useEffect(() => {
+    console.log('This will be called every re-render');
+});
+```
+
+* You can have an `useEffect` callback fire only on when the component first mounts. 
+```javascript react
+useEffect(() => {
+    console.log('only fires on load');
+}, []);
 ```
