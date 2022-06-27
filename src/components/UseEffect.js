@@ -8,7 +8,7 @@ const UseEffect = () => {
     function handleResize() {
         setWindowWidth(window.innerWidth);
     }
-
+    
     useEffect(() => {
         console.log('This will be called every re-render');
     });

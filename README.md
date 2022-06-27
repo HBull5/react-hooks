@@ -64,7 +64,7 @@ console.log(count); // this will return 1, not 2 as expected.
 // proper way to modify previous state.
 setState(prevCount => prevCount + 1); // prevCount is equal to states last value which in this instance is 0. 
 setState(prevCount => prevCount + 1); // prevCount is mutable and it is 1 at this point due to the line above. 
-console.log( ); // here we get the expected result of 2. 
+console.log(count); // here we get the expected result of 2. 
 ```
 
 * When updating state that is set to an object or an array you'll want to spread the previous array or object and then perform your mutation. However it can be easiest to sometimes just create several states instead of storing state in an object or an array.
@@ -152,7 +152,7 @@ useEffect(() => {
 }, []);
 ```
 
-* If you want to run a clean up function between state changes you will also just simply return that clean up function in your `useEffect` callback. 
+* If you want to run a clean up function between state changes you will also just simply return that clean up function in your `useEffect` callback. This return function will also run when when the component is unmounted.
 ```javascript react 
 useEffect(() => {
     console.log('state changed');
@@ -162,3 +162,22 @@ useEffect(() => {
     };
 }, [state]);
 ```
+
+<br>
+
+# Use Memo
+
+*  `useMemo` is primarly used for performance optimization by effectively caching a value so a calculation doesn't have to be needlessly run if its input and therefore output will not change. This of course only works with functions that will return the same output given the same input. This process is called memoization you can read more about <a href="https://en.wikipedia.org/wiki/Memoization" target="_blank">here</a>. `useMemo` can also be used for comparing reference values between renders. 
+
+* `useMemo` will need to be imported to be used in your component. 
+```javascript react
+import {useMemo} from 'react';
+```
+
+* `useMemo` takes two arguments a callback function that should return a the function you want to memoize, the second argument is an array of dependecies. An easy way to think of this is the return in the callback is the function used to calculate the value and the dependencies are your inputs you pass into that function. This is so when react sees that one of the inputs has changed it knows to then re-run the function to calculate the new value. 
+```javascript react
+const result = useMemo(() => {
+    return slowFunction(input);
+}, [input]);
+```
+
