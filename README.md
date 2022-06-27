@@ -250,7 +250,7 @@ const result = useMemo(() => {
 }, [input]);
 ```
 
-* The second use case for `useMemo` is for referential equality. You can read more a referential equality in JS <a href="https://dmitripavlutin.com/how-to-compare-objects-in-javascript/">here</a>, but basically since objects and arrays point to place and memory and not the value(s) even if the contents of the array or the object are the same as another they may not be equal if they are different variables or instantiated at different times. 
+* The second use case for `useMemo` is for referential equality. You can read more a referential equality in JS <a href="https://dmitripavlutin.com/how-to-compare-objects-in-javascript/">here</a>, but basically since objects and arrays point to place and memory and not the value(s) even if the contents of the array or the object are the same as another they may not be equal if they are different variables or instantiated at different times.
 ```javascript react
 /* here the value won't be updated unless the dark variable changes.
 Therefore since it doesn't update between renders this value points 
@@ -262,6 +262,10 @@ const themeStyles = useMemo(() => ({
     color: dark ? '#fff' : '#000'
 }), [dark]);
 
+/* If we didn't have the above value memoized this would be called 
+every re-render even if the values of the themeStyles object were 
+exactly the same b/c it would be a new copy and point to a different
+place in memory. */
 useEffect(() => {
     console.log('theme styles updated');
 }, [themeStyles]);
