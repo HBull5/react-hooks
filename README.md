@@ -141,6 +141,75 @@ useEffect(() => {
 }, [string, count]); 
 ```
 
+* **WARNING** this is a bit of a tangent, but might be useful for understanding how `useEffect` works. 
+
+    * `useEffect` is only called once when the component is rendered and if one of the dependencies are different between renders.
+    ```javascript react
+    /* This will only log 'use effect' once on load,
+    even though the onClick updates the value the 
+    useEffect is only called once on render. */
+    let date = new Date(); 
+
+    useEffect(() => {
+        console.log('use effect');
+    }, [date]);
+
+    return(
+        <button onClick={date = new Date();}></button>
+    )
+    ```
+
+    * The `useEffect` will be called on page load because the value will be set initially, triggering the `useEffect`. (see example above)
+
+    * You could in theory use a normal variable in your component as a dependency of `useEffect`, however changing a variables value does not trigger a re-render and therefore the `useEffect` call back is not fired. In general using variables for dependencies in `useEffect` can get messy and isn't recommended. Check out the code example below.
+    ```javascript react 
+    /* Notice how in this example since the value is
+    always the same between re-renders we only ever 
+    get the first use effect due to the intial setting 
+    of the variable however between state changes notice
+    that the use effect function is not recalled. Also
+    if you click the update my var you'll notice the 
+    value does change but once you update state and the
+    component re-renders the myVar is reset back to true
+    after resulting in no difference for the useEffect
+    function to fire. */
+    const [state, setState] = useState(0);
+    let myVar = true; 
+
+    useEffect(() => {
+        console.log('use effect');
+    }, [myVar]);
+
+    return(
+        <>
+            <button onClick={() => {setState(prevState => prevState + 1)}}>update state</button>
+            <button onClick={() => {myVar = !myVar;}}>Update My Var</button>
+        </>
+    ) 
+
+    /* In this example we get the use effect callback
+    firing everytime state updates b/c the state change
+    forces a re-render and new Date() returns the most 
+    recent date time which will be different from the 
+    previous hence calling the use effect callback. */ 
+    const [state, setState] = useState(0);
+    let myVar = new Date(); 
+
+    useEffect(() => {
+        console.log('use effect');
+    }, [myVar]);
+
+    return(
+        <>
+            <button onClick={() => {setState(prevState => prevState + 1)}}>update state</button>
+            /* removed the button here as it would update it to the new Date but wouldn't cause a
+            re-render and once the update state button is clicked it will then call a new Date() 
+            again once the myVar variable is intialized and assigned. */
+        </>
+    ) 
+    ```
+
+
 * For any `useEffect` hook you can run a function on unmount by simply returning a function to be called inside of the `useEffect` callback.
 ```javascript react
 useEffect(() => {
@@ -167,7 +236,7 @@ useEffect(() => {
 
 # Use Memo
 
-*  `useMemo` is primarly used for performance optimization by effectively caching a value so a calculation doesn't have to be needlessly run if its input and therefore output will not change. This of course only works with functions that will return the same output given the same input. This process is called memoization you can read more about <a href="https://en.wikipedia.org/wiki/Memoization" target="_blank">here</a>. `useMemo` can also be used for comparing reference values between renders. 
+*  `useMemo` is primarly used for performance optimization by effectively caching a value so a calculation doesn't have to be needlessly run if its input and therefore output will not change. This of course only works with functions that will return the same output given the same input. This process is called memoization you can read more about <a href="https://en.wikipedia.org/wiki/Memoization">here</a>. `useMemo` can also be used for comparing reference values between renders. 
 
 * `useMemo` will need to be imported to be used in your component. 
 ```javascript react
@@ -181,3 +250,4 @@ const result = useMemo(() => {
 }, [input]);
 ```
 
+* The second use case for `useMemo` is for referential equality.  
