@@ -225,9 +225,9 @@ useEffect(() => {
     return(
         <>
             <button onClick={() => {setState(prevState => prevState + 1)}}>update state</button>
-            /* removed the button here as it would update it to the new Date but wouldn't cause a
+            {/* removed the button here as it would update it to the new Date but wouldn't cause a
             re-render and once the update state button is clicked it will then call a new Date() 
-            again once the myVar variable is intialized and assigned. */
+            again once the myVar variable is intialized and assigned. */}
         </>
     ) 
     ```
