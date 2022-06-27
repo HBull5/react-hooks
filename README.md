@@ -141,6 +141,28 @@ useEffect(() => {
 }, [string, count]); 
 ```
 
+* For any `useEffect` hook you can run a function on unmount by simply returning a function to be called inside of the `useEffect` callback.
+```javascript react
+useEffect(() => {
+    console.log('component mounted');
+
+    return () => {
+        console.log('component unmounted');
+    }
+}, []);
+```
+
+* If you want to run a clean up function between state changes you will also just simply return that clean up function in your `useEffect` callback. This return function will also run when when the component is unmounted.
+```javascript react 
+useEffect(() => {
+    console.log('state changed');
+
+    return () => {
+        console.log('clean up function');
+    };
+}, [state]);
+```
+
 * **WARNING** this is a bit of a tangent, but might be useful for understanding how `useEffect` works and could be helpful for debugging your `useEffect` hooks.
 
     * `useEffect` is only called once when the component is rendered and if one of the dependencies are different between renders. However the `useEffect` callback will
@@ -209,29 +231,6 @@ useEffect(() => {
         </>
     ) 
     ```
-
-
-* For any `useEffect` hook you can run a function on unmount by simply returning a function to be called inside of the `useEffect` callback.
-```javascript react
-useEffect(() => {
-    console.log('component mounted');
-
-    return () => {
-        console.log('component unmounted');
-    }
-}, []);
-```
-
-* If you want to run a clean up function between state changes you will also just simply return that clean up function in your `useEffect` callback. This return function will also run when when the component is unmounted.
-```javascript react 
-useEffect(() => {
-    console.log('state changed');
-
-    return () => {
-        console.log('clean up function');
-    };
-}, [state]);
-```
 
 <br>
 
