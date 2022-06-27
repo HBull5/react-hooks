@@ -141,13 +141,16 @@ useEffect(() => {
 }, [string, count]); 
 ```
 
-* **WARNING** this is a bit of a tangent, but might be useful for understanding how `useEffect` works. 
+* **WARNING** this is a bit of a tangent, but might be useful for understanding how `useEffect` works and could be helpful for debugging your `useEffect` hooks.
 
-    * `useEffect` is only called once when the component is rendered and if one of the dependencies are different between renders.
+    * `useEffect` is only called once when the component is rendered and if one of the dependencies are different between renders. However the `useEffect` callback will
+    be called on page load b/c there the value will be initally set.
     ```javascript react
-    /* This will only log 'use effect' once on load,
-    even though the onClick updates the value the 
-    useEffect is only called once on render. */
+    /* The use effect is called once on render b/c
+    the value is intially set on page load. Even
+    though the onClick function updates the date 
+    value the use effect is NOT called b/c the page
+    is not re-rendered by the variable changing. */
     let date = new Date(); 
 
     useEffect(() => {
@@ -158,8 +161,6 @@ useEffect(() => {
         <button onClick={date = new Date();}></button>
     )
     ```
-
-    * The `useEffect` will be called on page load because the value will be set initially, triggering the `useEffect`. (see example above)
 
     * You could in theory use a normal variable in your component as a dependency of `useEffect`, however changing a variables value does not trigger a re-render and therefore the `useEffect` call back is not fired. In general using variables for dependencies in `useEffect` can get messy and isn't recommended. Check out the code example below.
     ```javascript react 
