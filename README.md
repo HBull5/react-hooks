@@ -270,3 +270,59 @@ useEffect(() => {
     console.log('theme styles updated');
 }, [themeStyles]);
 ```
+
+<br>
+
+# Use Ref
+
+* `useRef` works functionally much like state the big difference between `useRef` and `useState` being that `useRef` does not trigger a re-render.
+
+* You can import `useRef` as shown below. 
+```javascript react
+import {useRef} from 'react';
+```
+
+* `useRef` returns an object that has a single property in it of `current` this will return the value you have stored in it. 
+```javascript react
+const renderCount = useRef(1);
+
+useEffect(() => {
+    renderCount.current = renderCount.current + 1; 
+});
+```
+
+* The most common use case for `useRef` is to reference elements in your HTML.  
+```javascript react
+const inputRef = useRef(); 
+
+return (
+    <input ref={inputRef } type='text' />
+)
+``` 
+
+* You can call standard DOM element methods on any of the elements set as a reference as you would in vanilla Javascript. 
+```javascript react
+const inputRef = useRef(); 
+ 
+function focusInput() {
+    inputRef.current.focus(); 
+}
+
+return (
+    <input ref={inputRef} type='text' />
+    <button onClick={() => {focusInput()}}>
+)
+```
+
+* You can have multiple `useRef`'s in your component at a give time. 
+```javascript react
+const textRef = useRef(); 
+const emailRef = useRef(); 
+
+return ( 
+    <>
+        <input ref={textRef} type='text'>
+        <input ref={emailRef} type='email'>
+    </>
+)
+```  
