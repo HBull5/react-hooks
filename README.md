@@ -371,3 +371,32 @@ import React from 'react';
 
 export const myContext = React.createContext();
 ```
+
+* To consume or use the context ensure that the component trying to utilize the context in has a the context provider in some parent component, how far up the tree doesn't matter as long as a parent has the context provider. The `Provider` takes a single `prop` of value that will be whatever the value you want to pass along to children components to be. Additionally you'll need to use the `useContext` hook in the child component as well. The `useContext` hook takes one argument of the context you defined in the parent typically this is exported from the parent and imported into the child. However in the example below this is not done to demo how it works in a single file. 
+    ```javascript react
+    // Parent Component
+    import React from 'react';
+
+    const MyContext = React.createContext();  // you would normally export this so you can use it in other components.
+
+    function parentComponent() {
+        const contextValue = true; 
+
+        return(
+            <MyContext.Provider value={contextValue}>
+                <ChildComponent />
+            </MyContext.Provider>
+        )
+    }
+
+    // Child Component
+    import {useContext} from 'react';
+
+    function childComponent() {
+        const contextValue = useContext(MyContext); // typically you would import "MyContext" to be able to use it here. 
+
+        return(
+            <p>{contextValue.toString()}</p>
+        )
+    }
+    ```
