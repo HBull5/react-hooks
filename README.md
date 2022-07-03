@@ -411,3 +411,5 @@ function childComponent() {
 	return <p>{contextValue.toString()}</p>;
 }
 ```
+
+-   Though this is a valid way of utilizing the context api in react, there is a cleaner way that can make getting and setting your context inside of children much easier without all of the hoops. This really only makes sense when broken across multiple components and files like an actual react project would be though I've done this in this project checkout these files to see how you can easily pass context down to children here: <a href="https://github.com/HBull5/react-hooks/blob/main/src/components/ThemeContext.js">global context</a>, <a href="https://github.com/HBull5/react-hooks/blob/main/src/components/UseContext.js">parent component</a>, and <a href="">child component</a>.
