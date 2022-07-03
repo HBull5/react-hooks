@@ -412,4 +412,77 @@ function childComponent() {
 }
 ```
 
--   Though this is a valid way of utilizing the context api in react, there is a cleaner way that can make getting and setting your context inside of children much easier without all of the hoops. This really only makes sense when broken across multiple components and files like an actual react project would be though I've done this in this project checkout these files to see how you can easily pass context down to children here: <a href="https://github.com/HBull5/react-hooks/blob/main/src/components/ThemeContext.js">global context</a>, <a href="https://github.com/HBull5/react-hooks/blob/main/src/components/UseContext.js">parent component</a>, and <a href="">child component</a>.
+-   Though this is a valid way of utilizing the context api in react, there is a cleaner way that can make getting and setting your context inside of children much easier without all of the hoops. This really only makes sense when broken across multiple components and files like an actual react project would be though I've done this in this project checkout these files to see how you can easily pass context down to children here: <a href="https://github.com/HBull5/react-hooks/blob/main/src/components/ThemeContext.js">global context</a>, <a href="https://github.com/HBull5/react-hooks/blob/main/src/components/UseContext.js">parent component</a>, and <a href="https://github.com/HBull5/react-hooks/blob/main/src/components/FunctionContextComponent.js">child component</a>.
+
+<br>
+
+## Use Reducer
+
+-   Allows you to manage state and re-render a component when that state changes. It allows you to manage complex state a little easier. This use a similar pattern to redux. The most common use case I can think of is if you have multiple pieces of state you need to manage together.
+
+-   To use `useReducer` in your component simply import it as shown in the code example below.
+
+```javascript react
+import { useReducer } from 'react';
+```
+
+-   `useReducer` is instantiated much like `useState` where you'll destructure an array the first element being state of your reducer and the second being a `dispatch` function that could be named anything but basically the function you'll call to start the reducer. The actual `useReducer` hook takes two parameters a function to be called, conventionally named `reducer` and and initial state.
+
+```javascript react
+import { useReducer } from 'react';
+
+const [reducerState, dispatch] = useReducer(reducer, []); // initial state is usually an array or an object.
+```
+
+-   The `reducer` function you define will take two parameters the previous state (note this is immutable) and an action which is the parameters you pass into your dispatch function. The return value of your `reducer` function will be
+
+```javascript react
+import { useReducer } from 'react';
+
+function reducer(reducerState, action) {
+	switch (action.type) {
+		case 'increment':
+			return { ...reducerState, count: reducerState.count + 1 };
+		case 'decrement':
+			return { ...reducerState, count: reducerState.count - 1 };
+		default:
+			return reducerState;
+	}
+}
+
+function Component() {
+	const [useReducer, dispatch] = useReducer(reducer, {});
+
+	return (
+		<>
+			<button
+				onClick={() => {
+					dispatch({ type: 'decrement' });
+				}}
+			>
+				-
+			</button>
+			<span>{useReducer.count}</span>
+			<button
+				onClick={() => {
+					dispatch({ type: 'increment' });
+				}}
+			>
+				+
+			</button>
+		</>
+	);
+}
+```
+
+<br>
+
+## Use Callback
+
+<br>
+
+## Custom Hooks
+
+<br>
+
+# Use Id

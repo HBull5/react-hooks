@@ -3,7 +3,8 @@ import './styles.css';
 // import UseEffect from './components/UseEffect';
 // import UseMemo from './components/UseMemo';
 // import UseRef from './components/UseRef';
-import UseContext from './components/UseContext';
+// import UseContext from './components/UseContext';
+import UseReducer from './components/UseReducer';
 
 function App() {
 	return (
@@ -12,7 +13,8 @@ function App() {
 			{/* <UseEffect /> */}
 			{/* <UseMemo />  */}
 			{/* <UseRef /> */}
-			<UseContext />
+			{/* <UseContext /> */}
+			<UseReducer />
 		</>
 	);
 }
