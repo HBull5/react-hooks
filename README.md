@@ -434,7 +434,7 @@ import { useReducer } from 'react';
 const [reducerState, dispatch] = useReducer(reducer, []); // initial state is usually an array or an object.
 ```
 
--   The `reducer` function you define will take two parameters the previous state (note this is immutable) and an action which is the parameters you pass into your dispatch function. The return value of your `reducer` function will be
+-   The `reducer` function you define will take two parameters the previous state (note this is immutable) and an action which is the parameters you pass into your dispatch function. The return value of your `reducer` function will be the new reducer state. When you call your dispatch function convention dictates you pass an object with two properties one of type to determine which action needs to be performed and a payload property containing any data type suitable to your use case. The below example doesn't include the use of a payload but if you want a more clear example you can check <a href="https://github.com/HBull5/react-hooks/blob/main/src/components/UseReducer.js">here</a>.
 
 ```javascript react
 import { useReducer } from 'react';
