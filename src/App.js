@@ -4,7 +4,8 @@ import './styles.css';
 // import UseMemo from './components/UseMemo';
 // import UseRef from './components/UseRef';
 // import UseContext from './components/UseContext';
-import UseReducer from './components/UseReducer';
+// import UseReducer from './components/UseReducer';
+import UseCallback from './components/UseCallback';
 
 function App() {
 	return (
@@ -14,7 +15,8 @@ function App() {
 			{/* <UseMemo />  */}
 			{/* <UseRef /> */}
 			{/* <UseContext /> */}
-			<UseReducer />
+			{/* <UseReducer /> */}
+			<UseCallback />
 		</>
 	);
 }

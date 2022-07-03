@@ -1,3 +1,9 @@
+# Documentation
+
+-   This repo is an actual react project where you can run and experiment with the examples, along with this there are descriptions and overviews of the hooks here in this readme file as well.
+
+<br>
+
 # Hook Basics
 
 -   You can only use hooks in function based components and not class based.
@@ -416,7 +422,7 @@ function childComponent() {
 
 <br>
 
-## Use Reducer
+# Use Reducer
 
 -   Allows you to manage state and re-render a component when that state changes. It allows you to manage complex state a little easier. This use a similar pattern to redux. The most common use case I can think of is if you have multiple pieces of state you need to manage together.
 
@@ -477,12 +483,8 @@ function Component() {
 
 <br>
 
-## Use Callback
+# Use Callback
 
 <br>
 
-## Custom Hooks
-
-<br>
-
-# Use Id
+# Custom Hooks
