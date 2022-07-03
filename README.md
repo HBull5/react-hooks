@@ -221,18 +221,10 @@ useEffect(() => {
 
     return (
     	<>
-    		<button
-    			onClick={() => {
-    				setState(prevState => prevState + 1);
-    			}}
-    		>
+    		<button onClick={() => {setState(prevState => prevState + 1);}}>
     			update state
     		</button>
-    		<button
-    			onClick={() => {
-    				myVar = !myVar;
-    			}}
-    		>
+    		<button onClick={() => {myVar = !myVar;}}>
     			Update My Var
     		</button>
     	</>
@@ -252,11 +244,7 @@ useEffect(() => {
 
     return (
     	<>
-    		<button
-    			onClick={() => {
-    				setState(prevState => prevState + 1);
-    			}}
-    		>
+    		<button onClick={() => {setState(prevState => prevState + 1);}}>
     			update state
     		</button>
     		{/* removed the button here as it would update it to the new Date but wouldn't cause a
@@ -376,10 +364,10 @@ return (
 
 -   `useContext` is primarily used as a means to avoid <a href="https://kentcdodds.com/blog/prop-drilling#what-is-prop-drilling">prop drilling</a> by creating a global state, or a state at the highest level in which the state is used.
 
--   To use the context api you'll need to import the entire react library so you can call the `createContext()` method.
+-   To use the context api you'll need to import the entire react library so you can call the `createContext()` method. You will generally also want to export the createdContext to be used elsewhere in your application.
 
 ```javascript react
 import React from 'react';
 
-const myContext = React.createContext();
+export const myContext = React.createContext();
 ```
