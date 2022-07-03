@@ -1,3 +1,4 @@
+import './styles.css';
 // import UseState from './components/UseState';
 // import UseEffect from './components/UseEffect';
 // import UseMemo from './components/UseMemo';
@@ -5,16 +6,15 @@
 import UseContext from './components/UseContext';
 
 function App() {
-
-  return (
-    <>
-      {/* <UseState /> */}
-      {/* <UseEffect /> */}
-      {/* <UseMemo />  */}
-      {/* <UseRef /> */}
-      <UseContext />
-    </>
-  );
+	return (
+		<>
+			{/* <UseState /> */}
+			{/* <UseEffect /> */}
+			{/* <UseMemo />  */}
+			{/* <UseRef /> */}
+			<UseContext />
+		</>
+	);
 }
 
 export default App;
