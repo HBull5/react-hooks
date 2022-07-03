@@ -3,12 +3,12 @@ import React, { useContext, useState } from 'react';
 const ThemeContext = React.createContext();
 const ThemeUpdateContext = React.createContext();
 
-// custom hook to export the context to children
+// custom hook to export getting context to children
 export function useTheme() {
 	return useContext(ThemeContext);
 }
 
-// custom hook to export the context to children
+// custom hook to export setting context to children
 export function useThemeUpdate() {
 	return useContext(ThemeUpdateContext);
 }
