@@ -503,7 +503,7 @@ const memo = useMemo(() => {
 }, [number]);
 ```
 
-- `useCallback` can allow you to pass a function definition as a dependency of `useEffect` just like you could with `useMemo` however, the main advantage with `useCallback` is since it store the function definition you can then all that function with whatever parameters you may need to unlike `useMemo`. You can see a good example of that <a href="">here</a>.
+- `useCallback` can allow you to pass a function definition as a dependency of `useEffect` just like you could with `useMemo` however, the main advantage with `useCallback` is since it store the function definition you can then all that function with whatever parameters you may need to unlike `useMemo`. You can see a good example of that <a href="https://github.com/HBull5/react-hooks/blob/main/src/components/UseCallback.js">here</a>.
 
 <br>
 
