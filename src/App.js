@@ -5,7 +5,7 @@ import './styles.css';
 // import UseRef from './components/UseRef';
 // import UseContext from './components/UseContext';
 // import UseReducer from './components/UseReducer';
-import UseCallback from './components/UseCallback';
+// import UseCallback from './components/UseCallback';
 
 function App() {
 	return (
@@ -16,7 +16,7 @@ function App() {
 			{/* <UseRef /> */}
 			{/* <UseContext /> */}
 			{/* <UseReducer /> */}
-			<UseCallback />
+			{/* <UseCallback /> */}
 		</>
 	);
 }
