@@ -284,7 +284,7 @@ useEffect(() => {
 import { useMemo } from 'react';
 ```
 
--   `useMemo` takes two arguments a callback function that should return a the function you want to memoize, the second argument is an array of dependecies. An easy way to think of this is the return in the callback is the function used to calculate the value and the dependencies are your inputs you pass into that function. This is so when react sees that one of the inputs has changed it knows to then re-run the function to calculate the new value.
+-   `useMemo` takes two arguments a callback function that should return a value you want to memoize, the second argument is an array of dependecies. An easy way to think of this is the return in the callback is the function used to calculate the value and the dependencies are your inputs you pass into that function. This is so when react sees that one of the inputs has changed it knows to then re-run the function to calculate the new value.
 
 ```javascript react
 const result = useMemo(() => {
@@ -484,6 +484,26 @@ function Component() {
 <br>
 
 # Use Callback
+
+- To use `useCallback` in your component simply import it as shown below. 
+```javascript react
+import {useCallback} from 'react';
+```
+
+- `useCallback` works a lot like `useMemo` the main difference is `useMemo` memoizes a value, be it a integer, string, object, array, etc... while `useCallback` memoizes a function definition. 
+```javascript react
+// callback will return the entire function definiton
+const callback = useCallback(() => {
+	return [number, number + 1, number + 2];
+}, [number]); 
+
+// this will return the resulting array
+const memo = useMemo(() => {
+	return [number, number + 1, number + 2];
+}, [number]);
+```
+
+- `useCallback` can allow you to pass a function definition as a dependency of `useEffect` just like you could with `useMemo` however, the main advantage with `useCallback` is since it store the function definition you can then all that function with whatever parameters you may need to unlike `useMemo`. You can see a good example of that <a href="">here</a>.
 
 <br>
 
