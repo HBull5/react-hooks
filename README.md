@@ -504,3 +504,30 @@ const memo = useMemo(() => {
 ```
 
 - `useCallback` can allow you to pass a function definition as a dependency of `useEffect` just like you could with `useMemo` however, the main advantage with `useCallback` is since it store the function definition you can then all that function with whatever parameters you may need to unlike `useMemo`. You can see a good example of that <a href="https://github.com/HBull5/react-hooks/blob/main/src/components/UseCallback.js">here</a>.
+
+<br>
+
+# Forward Ref
+
+- This can be useful if you want to call a native dom api from a parent to an element in a child component. You can kind of think of this as lifting refs. 
+
+- To use `forwardRef` you'll need to import the `React` object. 
+```javascript react
+import React from 'react';
+```
+
+- The ref will be forward from you're child component as such. You'll have to accept a ref property in your function parameters for your component as well. Note, even if you don't use any props for said child component make sure you atleast include b/c the ref property will be the second property passed. 
+```javascript react 
+import React, { useRef } from 'react';
+
+function ParentComponent() {
+	const myRef = useRef(); 
+
+	return(<ChildComponent ref={myRef}/>);
+}
+
+// typically you would wrap your wrap the function where you're exporting for a cleaner syntax
+React.forwardRef(function ChildComponent({}, ref) {
+	return(<input ref={ref} />)
+})
+```

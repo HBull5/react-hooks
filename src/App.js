@@ -6,6 +6,7 @@ import './styles.css';
 // import UseContext from './components/UseContext';
 // import UseReducer from './components/UseReducer';
 // import UseCallback from './components/UseCallback';
+import ForwardRef from './components/ForwardRef';
 
 function App() {
 	return (
@@ -17,6 +18,7 @@ function App() {
 			{/* <UseContext /> */}
 			{/* <UseReducer /> */}
 			{/* <UseCallback /> */}
+			<ForwardRef />
 		</>
 	);
 }
